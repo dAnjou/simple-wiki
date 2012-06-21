@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Posts verwalten{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="seven columns centered">
+            <form class="nice" method="POST" action="{{ filename }}">
+                {{ form.title(class_="input-text") }}
+                {{ form.body(class_="expand") }}
+                <input type="submit" value="GO" class="medium radius button"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

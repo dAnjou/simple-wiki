@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="seven columns centered">
+            <ul>
+                {% for post in posts %}
+                <li>
+                    <a href="{{ url_for('post', filename=post.filename) }}" class="">{{ post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
