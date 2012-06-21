@@ -4,8 +4,7 @@
 
 It's a Flask project. Look at the code and figure it out by yourself. Here are the required packages:
 
-`pip freeze -l`
-
+    $ pip freeze -l
     Flask==0.8
     Flask-WTF==0.6
     Jinja2==2.6
