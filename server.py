@@ -1,11 +1,13 @@
-from flask import Flask, render_template, abort, Markup, request, redirect, url_for, flash
+from flask import Flask, render_template, abort, Markup, request, redirect, url_for, flash, Response, stream_with_context
 from flaskext.wtf import Form, TextField, TextAreaField, Required
 
 from werkzeug import secure_filename
 from markdown import markdown
 from yaml import load, safe_dump
+from jinja2 import Template
 
 import os
+from time import sleep
 from datetime import datetime
 
 app = Flask(__name__)
@@ -14,7 +16,24 @@ class PostForm(Form):
     title = TextField(validators=[Required()])
     body = TextAreaField(validators=[Required()])
 
-def get_post_metadates():
+
+def get_post_metadata_generator():
+    for filename in os.listdir('posts'):
+        sleep(0.5) # add a little more lag
+        with open('posts/' + filename) as f:
+            tmp = ''
+            for line in f:
+                if not line.strip():
+                    break
+                tmp += line
+            metadata = load(tmp)
+            #TODO: add creation and modification date
+            #if not metadata.has_key('created'):
+            #    metadata['created'] = datetime.fromtimestamp(os.path.getmtime(f.name)).strftime('%Y-%m-%d %H:%M:%S')
+            metadata['filename'] = filename
+            yield metadata
+
+def get_post_metadata_list():
     metadates = []
     for filename in os.listdir('posts'):
         with open('posts/' + filename) as f:
@@ -61,9 +80,14 @@ def md2html(s):
 #def datetimeformat(value, format='%Y-%m-%d %H:%M:%S'):
 #    return datetime.fromtimestamp(value).strftime(format)
 
+def stream_template(template_name, **context):
+    app.update_template_context(context)
+    t = app.jinja_env.get_template(template_name)
+    return t.generate(posts=get_post_metadata_generator())
+
 @app.route('/')
 def index():
-    return render_template('index.html', posts=get_post_metadates())
+    return Response(stream_with_context(stream_template('index.html', posts=get_post_metadata_generator())))
 
 @app.route('/p/<filename>')
 def post(filename):
