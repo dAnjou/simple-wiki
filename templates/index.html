@@ -6,10 +6,15 @@
             <ul>
                 {% for post in posts %}
                 <li>
-                    <a href="{{ url_for('post', filename=post.filename) }}" class="">{{ post.title }}</a>
+                    <a href="{{ url_for('post', url=post.url) }}" class="">{{ post.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="seven columns centered">
+            <a href="{{ url_for('admin_edit') }}" class="medium radius button">New</a>
         </div>
     </div>
 {% endblock %}

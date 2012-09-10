@@ -3,9 +3,14 @@
 {% block body %}
     <div class="row">
         <div class="seven columns centered">
-            <form class="nice" method="POST" action="{{ filename }}">
-                {{ form.title(class_="input-text") }}
-                {{ form.body(class_="expand") }}
+            <form class="nice" method="POST" action="{{ url_for('admin_save') }}">
+            	{% if title %}
+            		<h1>{{ title }}</h1>
+					<input name="title" type="hidden" value="{{ title }}" />
+            	{% else %}
+            		<input name="title" type="text" class="input-text" placeholder="Title" />
+            	{% endif %}
+  				<textarea name="body" class="expand">{{ body }}</textarea>
                 <input type="submit" value="GO" class="medium radius button"/>
             </form>
         </div>

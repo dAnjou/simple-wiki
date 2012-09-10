@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block body %}
     <div class="row admin">
         <div class="seven columns centered">
-            <a href="{{ url_for('admin', filename=post.filename) }}" class="">edit</a>
+            <a href="{{ url_for('admin_edit', url=url) }}" class="">edit</a>
         </div>
     </div>
     <div class="row post">
         <div class="seven columns centered">
-            <h1>{{ post.title }}</h1>
-            <div class="post">{{ post.body | markdown }}</div>
+            <h1>{{ title }}</h1>
+            <div class="post">{{ body | markdown }}</div>
         </div>
     </div>
 {% endblock %}
