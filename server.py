@@ -13,7 +13,7 @@ app = Flask(__name__)
 def md2html(s):
     return Markup(markdown(s))
 
-@app.route('/')
+@app.route('/+index')
 def index():
     posts = []
     for filename in os.listdir('posts'):
@@ -21,8 +21,11 @@ def index():
         posts.append({'title': title, 'url': url_quote_plus(title)})
     return render_template('index.html', posts=posts)
 
+@app.route('/', defaults={'url': None})
 @app.route('/<url>')
 def post(url):
+    if not url:
+        return redirect(url_for('post', url='about'))
     try:
         title = url_unquote_plus(url)
         f = open('posts/' + urlsafe_b64encode(title))
