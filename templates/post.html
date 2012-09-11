@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
-{% block title %}{{ title }}{% endblock %}
+{% block site_title %}{{ title }}{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
 {% block body %}
-    <div class="row admin">
-        <div class="seven columns centered">
-            <a href="{{ url_for('admin_edit', url=url) }}" class="">edit</a>
-        </div>
-    </div>
-    <div class="row post">
-        <div class="seven columns centered">
-            <h1>{{ title }}</h1>
-            <div class="post">{{ body | markdown }}</div>
-        </div>
-    </div>
+	<div class="row admin">
+		<div class="twelve columns">
+			<a href="{{ url_for('admin_edit', url=url) }}">edit</a>
+		</div>
+	</div>
+	<div class="row content">
+		<div class="twelve columns">
+			<div class="post">{{ body | markdown }}</div>
+		</div>
+	</div>
 {% endblock %}

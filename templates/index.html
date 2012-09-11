@@ -1,20 +1,20 @@
 {% extends "layout.html" %}
-{% block title %}Home{% endblock %}
+{% block site_title %}Home{% endblock %}
 {% block body %}
-    <div class="row">
-        <div class="seven columns centered">
-            <ul>
-                {% for post in posts %}
-                <li>
-                    <a href="{{ url_for('post', url=post.url) }}" class="">{{ post.title }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="row">
-        <div class="seven columns centered">
-            <a href="{{ url_for('admin_edit') }}" class="medium radius button">New</a>
-        </div>
-    </div>
+	<div class="row admin">
+		<div class="twelve columns">
+			<a href="{{ url_for('admin_edit') }}">new</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="twelve columns">
+			<ul>
+				{% for post in posts %}
+				<li>
+					<a href="{{ url_for('post', url=post.url) }}" class="">{{ post.title }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
 {% endblock %}

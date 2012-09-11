@@ -1,7 +1,38 @@
-.container {
+div.container {
     margin-top: 20px;
+}
+
+div.row {
+    width: 768px;
+}
+
+div.header h1 {
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-weight: 400;
+    font-size: 70px;
+}
+
+div.header h1 a {
+    color: #222;
 }
 
 div.admin {
 	text-align: right;
+}
+
+div.content * {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+body, div, dl, dt, dd, ul, ol, li, pre, form, fieldset, p, blockquote, th, td {
+	font-size: 16px;
+}
+
+div.content ul {
+    margin-left: 25px;
+    list-style: disc outside;
+}
+
+textarea {
+	height: 300px;
 }

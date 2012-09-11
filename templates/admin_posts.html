@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
-{% block title %}Posts verwalten{% endblock %}
+{% block site_title %}"{{ title }}" bearbeiten{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
 {% block body %}
-    <div class="row">
-        <div class="seven columns centered">
-            <form class="nice" method="POST" action="{{ url_for('admin_save') }}">
-            	{% if title %}
-            		<h1>{{ title }}</h1>
+	<div class="row">
+		<div class="twelve columns">
+			<form class="nice" method="POST" action="{{ url_for('admin_save') }}">
+				{% if title %}
 					<input name="title" type="hidden" value="{{ title }}" />
-            	{% else %}
-            		<input name="title" type="text" class="input-text" placeholder="Title" />
-            	{% endif %}
-  				<textarea name="body" class="expand">{{ body }}</textarea>
-                <input type="submit" value="GO" class="medium radius button"/>
-            </form>
-        </div>
-    </div>
+				{% else %}
+					<input name="title" type="text" class="input-text" placeholder="Title" />
+				{% endif %}
+				<textarea name="body" class="expand">{{ body }}</textarea>
+				<input type="submit" value="GO" class="medium radius button"/>
+			</form>
+		</div>
+	</div>
 {% endblock %}

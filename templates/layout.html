@@ -5,39 +5,53 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
-    <title>{% block title %}{% endblock %}</title>
-    <!-- Included CSS Files -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='foundation/stylesheets/foundation.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!--[if lt IE 9]>
-        <link rel="stylesheet" href="{{ url_for('static', filename='foundation/stylesheets/ie.css') }}">
-    <![endif]-->
-    <script src="{{ url_for('static', filename='foundation/javascripts/modernizr.foundation.js') }}"></script>
-    <!-- IE Fix for HTML5 Tags -->
-    <!--[if lt IE 9]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+	<meta charset="utf-8" />
+
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+
+	<title>{% block site_title %}{% endblock %} - d'Anjou</title>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ url_for('static', filename='foundation/stylesheets/foundation.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="{{ url_for('static', filename='foundation/stylesheets/ie.css') }}">
+	<![endif]-->
+	<script src="{{ url_for('static', filename='foundation/javascripts/modernizr.foundation.js') }}"></script>
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 <body>
-    <!-- container -->
-    <div class="container">
-        <div class="row header">
-            <div class="three columns centered">
-                <a href="{{ url_for('index') }}" class=""><h1>d'Anjou</h1></a>
-            </div>
-        </div>
-        {% block body %}
-        {% endblock %}
-    </div>
-    <!-- Included JS Files -->
-    <script src="{{ url_for('static', filename='Markdown.Converter.js') }}"></script>
-    <script src="{{ url_for('static', filename='foundation/javascripts/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='foundation/javascripts/foundation.js') }}"></script>
-    <script src="{{ url_for('static', filename='foundation/javascripts/app.js') }}"></script>
-    {% block javascript %}
-    {% endblock %}
+	<div class="row"> 
+		<hr>
+	</div>
+	<div class="row header">
+		<div class="two columns mobile-one">
+			<a href="{{ url_for('post') }}">
+				<img src="{{ url_for('static', filename='logo.png') }}">
+			</a>
+		</div>
+		<div class="ten columns mobile-three">
+			<h1>
+				<a href="{{ url_for('post') }}">d'Anjou</a>
+				<small>{% block page_title %}{% endblock %}</small>
+			</h1>
+		</div>
+	</div>
+	<div class="row"> 
+		<hr>
+	</div>
+	{% block body %}
+	{% endblock %}
+	<!-- Included JS Files -->
+	<script src="{{ url_for('static', filename='Markdown.Converter.js') }}"></script>
+	<script src="{{ url_for('static', filename='foundation/javascripts/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='foundation/javascripts/foundation.js') }}"></script>
+	<script src="{{ url_for('static', filename='foundation/javascripts/app.js') }}"></script>
+	{% block javascript %}
+	{% endblock %}
 </body>
 </html>
